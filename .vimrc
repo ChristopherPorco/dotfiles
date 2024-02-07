@@ -38,8 +38,8 @@ call plug#begin()
 "   - e.g. `call plug#begin('~/.vim/plugged')`
 "   - Avoid using standard Vim directory names like 'plugin'
 
-" Make sure you use single quotes
 Plug 'scrooloose/nerdtree'
+Plug 'phanviet/vim-monokai-pro'
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
@@ -51,3 +51,11 @@ autocmd VimEnter * NERDTree | wincmd p
 autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 " Close the tab if NERDTree is the only window remaining in it.
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" Disable automatic comment insertion
+autocmd BufNewFile,BufRead * setlocal formatoptions-=r
+" Syntax highlighting for SystemVerilog
+autocmd BufNewFile,BufRead *.sv set syntax=verilog
+
+" Monokai Pro color scheme
+"colorscheme monokai_pro
