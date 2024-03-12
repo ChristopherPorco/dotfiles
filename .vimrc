@@ -1,3 +1,7 @@
+""""""""""""""""""""""
+""""""" BASICS """""""
+""""""""""""""""""""""
+
 filetype on        " Enable type file detection. Vim will be able to try to detect the type of file in use
 filetype plugin on " Enable plugins and load plugin for the detected file type
 filetype indent on " Load an indent file for the detected file type
@@ -24,11 +28,33 @@ au CursorHold * checktime
 " Note - should work if you upgrade vim to latest verson
 set shortmess-=S   " Give a count of matches when doing a search
 
-syntax on " Turn syntax highlighting on
+" Turn syntax highlighting on
+syntax on
 
 " Map U to redo
-nnoremap U <C-R> 
+nnoremap U <C-R>
 
+"""""""""""""""""""""""""""
+""""""" From 18-725 """""""
+"""""""""""""""""""""""""""
+
+" Disable automatic comment insertion
+autocmd BufNewFile,BufRead * setlocal formatoptions-=r
+" Syntax highlighting for SystemVerilog
+autocmd BufNewFile,BufRead *.sv set syntax=verilog
+
+"""""""""""""""""""""""
+""""""" PLUGINS """""""
+"""""""""""""""""""""""
+
+" Install VimPlug: https://github.com/junegunn/vim-plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Load plugins
 call plug#begin()
 " The default plugin directory will be as follows:
 "   - Vim (Linux/macOS): '~/.vim/plugged'
@@ -52,11 +78,6 @@ autocmd VimEnter * NERDTree | wincmd p
 autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 " Close the tab if NERDTree is the only window remaining in it.
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-" Disable automatic comment insertion
-autocmd BufNewFile,BufRead * setlocal formatoptions-=r
-" Syntax highlighting for SystemVerilog
-autocmd BufNewFile,BufRead *.sv set syntax=verilog
 
 " Lightline color scheme
 let g:lightline = {
