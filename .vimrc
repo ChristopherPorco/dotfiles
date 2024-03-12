@@ -39,7 +39,8 @@ call plug#begin()
 "   - Avoid using standard Vim directory names like 'plugin'
 
 Plug 'scrooloose/nerdtree'
-Plug 'phanviet/vim-monokai-pro'
+Plug 'itchyny/lightline.vim'
+"Plug 'phanviet/vim-monokai-pro'
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
@@ -57,5 +58,14 @@ autocmd BufNewFile,BufRead * setlocal formatoptions-=r
 " Syntax highlighting for SystemVerilog
 autocmd BufNewFile,BufRead *.sv set syntax=verilog
 
+" Lightline color scheme
+let g:lightline = {
+      \ 'colorscheme': 'powerline',
+      \ }
+
 " Monokai Pro color scheme
 "colorscheme monokai_pro
+
+" Use black background for colorscheme
+"highlight Normal ctermbg=NONE
+"highlight nonText ctermbg=NONE
