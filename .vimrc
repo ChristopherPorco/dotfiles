@@ -24,4 +24,13 @@ set shortmess-=S   " Give a count of matches when doing a search
 syntax on " Turn syntax highlighting on
 
 " Map U to redo
-nnoremap U <C-R> 
+nnoremap U <C-R>
+
+"""""""""""""""""""""""""""
+""""""" From 18-725 """""""
+"""""""""""""""""""""""""""
+
+" Disable automatic comment insertion
+autocmd BufNewFile,BufRead * setlocal formatoptions-=r
+" Syntax highlighting for SystemVerilog
+autocmd BufNewFile,BufRead *.sv set syntax=verilog
